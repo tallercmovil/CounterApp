@@ -8,6 +8,12 @@
     android:background="@drawable/bg1"
     tools:context=".MainActivity">
 
+    <!--
+    Uso de color sin hard coding
+    android:background="@color/my_background_color"
+    -->
+
+
     <TextView
         android:id="@+id/tvCounter"
         android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 package com.amaurypm.counterapp
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.KeyEvent
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         //Instanciamos el objecto con view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         //Pinta en pantalla el layout, pero con view binding
@@ -33,6 +35,14 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Si deseamos bloquear la rotación
+        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        //Recuperamos el valor por si hubo un cambio de configuración
+        counter = savedInstanceState?.getInt("contador") ?: 0
+
+        binding.tvCounter.text = "$counter"
 
         //tvCounter = findViewById<TextView>(R.id.tvCounter)
         //btnCount = findViewById<Button>(R.id.btnCount)
@@ -51,7 +61,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.apply {
+            putInt("contador", counter)
+            putBoolean("flag1", true)
+        }
 
     }
 
