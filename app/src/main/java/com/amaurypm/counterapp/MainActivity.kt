@@ -53,11 +53,13 @@ class MainActivity : AppCompatActivity() {
             btnCount.setOnClickListener {
                 counter++
                 tvCounter.text = "$counter"
+                btnReset.visibility = View.VISIBLE
             }
 
             btnReset.setOnClickListener {
                 counter = 0
                 tvCounter.text = getString(R.string.initial_count)
+                btnReset.visibility = View.INVISIBLE
             }
         }
 
